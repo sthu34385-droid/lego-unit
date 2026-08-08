@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Shop</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-detail-card">
+            <!-- ဘယ်ဘက်ခြမ်း: ပုံအဓိကနှင့် ပုံသေး ၄ ပုံ စက်ဝိုင်းပုံစံ -->
+            <div class="image-section">
+                <div class="main-image-box">
+                    <img id="mainImage" src="photo_2026-08-08_20-03-45.jpg" alt="Product">
+                </div>
+                <!-- စက်ဝိုင်းပုံ ပုံသေး ၄ ပုံ -->
+                <div class="thumbnail-container">
+                    <img src="photo_2026-08-08_20-03-45.jpg" class="thumb-circle active" onclick="changeImage(this)">
+                    <img src="photo_2026-08-08_20-03-47.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    
+                </div>
+            </div>
+
+            <!-- ညာဘက်ခြမ်း: အချက်အလက်များနှင့် ဈေးနှုန်း -->
+            <div class="info-section">
+                <h2>Reverse Flash</h2>
+                <p class="detail-category">Category: Mini Lego</p>
+                <p class="detail-price">18,000 MMK</p>
+                
+                <h3>Product Description</h3>
+                <p class="description-text">
+                    အရည်အသွေးကောင်းမွန်ပြီး လက်ရာသေသပ်လှပသော Lego Mini Figure ဖြစ်ပါသည်။ စုဆောင်းရတာနှစ်သက်သူများအတွက် အထူးသင့်လျော်ပါသည်။
+                </p>
+
+                <a href="https://t.me/Izumi998" target="_blank" class="buy-btn" style="text-decoration: none; display: inline-block; text-align: center;">Add to Cart</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- ပုံသေးကို နှိပ်လျှင် ပုံအကြီးပြောင်းပေးမည့် JavaScript -->
+    <script>
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = element.src;
+
+            // Active ဖြစ်နေသော စက်ဝိုင်းကို Border ပြောင်းရန်
+            document.querySelectorAll('.thumb-circle').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
