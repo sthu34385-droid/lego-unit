@@ -18,7 +18,7 @@ const products = [
     { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product16.html"},
 ];
 
-const itemsPerPage = 4; // တစ်မျက်နှာလျှင် ပြမည့် Product အရေအတွက်
+const itemsPerPage = 6; // တစ်မျက်နှာလျှင် ပြမည့် Product အရေအတွက်
 let currentPage = 1;
 
 const productGrid = document.querySelector('.product-grid');
@@ -106,3 +106,21 @@ if (categorySelect) {
         displayProducts(this.value, currentPage);
     });
 }
+window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+    const mainContent = document.getElementById("main-content");
+
+    // လိုချင်ရင် ဒီမှာ အချိန်ဆွဲလို့ရပါတယ် (ဥပမာ - ၁.၅ စက္ကန့်)
+    setTimeout(() => {
+        preloader.style.opacity = "0";
+        preloader.style.transition = "opacity 3s ease";
+
+        setTimeout(() => {
+            preloader.style.display = "none";
+            
+            // preloader ပျောက်သွားမှ တကယ့် website content တွေကို ပေါ်လာစေမယ်
+            mainContent.style.display = "block";
+        }, 500);
+        
+    }, 3000); // ၁.၅ စက္ကန့်ကြာရင် Preloader ပျောက်ပြီး Website ပေါ်လာမယ်
+});
