@@ -18,24 +18,29 @@
 
     <main>
         <div class="product-detail-card">
-           
+          
             <div class="image-section">
                 <div class="main-image-box">
-                    <img id="mainImage" src="photo_2026-08-08_20-03-45.jpg" alt="Product">
+                    <img id="mainImage" src="photo_2026-08-09_12-40-14.jpg" alt="Product">
                 </div>
                
                 <div class="thumbnail-container">
-                    <img src="photo_2026-08-08_20-03-45.jpg" class="thumb-circle active" onclick="changeImage(this)">
-                    <img src="photo_2026-08-08_20-03-47.jpg" class="thumb-circle" onclick="changeImage(this)">
-                    
+                    <img src="photo_2026-08-09_12-46-05.jpg" class="thumb-circle active" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-06.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-08.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-10.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-11.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-13.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-15.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-46-13.jpg" class="thumb-circle" onclick="changeImage(this)">
                 </div>
             </div>
 
            
             <div class="info-section">
-                <h2>Reverse Flash</h2>
+                <h2>Mini Set</h2>
                 <p class="detail-category">Category: Mini Lego</p>
-                <p class="detail-price">3,000 MMK</p>
+                <p class="detail-price">6,000 MMK</p>
                 
                 <h3>Product Description</h3>
                 <p class="description-text">
@@ -49,16 +54,16 @@
     </main>
 
     <footer>
-       <a href="https://sthu34385-droid.github.io/protofolio/">Creator Protofolio</a>
+        <a href="https://sthu34385-droid.github.io/protofolio/">Creator Protofolio</a>
     </footer>
 
-    
+   
     <script>
         function changeImage(element) {
             const mainImage = document.getElementById('mainImage');
             mainImage.src = element.src;
 
-            
+           
             document.querySelectorAll('.thumb-circle').forEach(img => img.classList.remove('active'));
             element.classList.add('active');
         }

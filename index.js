@@ -1,37 +1,46 @@
-// ပေးထားသော HTML နှင့် ကိုက်ညီသော Product စာရင်းများ
 const products = [
-    { name: "SKOBBY-DOO!", category: "Set", price: "15,000 MMK", image: "photo_2026-08-08_10-12-46.jpg", link: "product1.html" },
-    { name: "NINJAGO", category: "Set", price: "22,000 MMK", image: "photo_2026-08-08_10-13-03.jpg", link: "product2.html" },
-    { name: "Reverse Flash", category: "Mini", price: "18,000 MMK", image: "photo_2026-08-08_10-12-51.jpg", link: "product3.html" },
-    { name: "Jocker Imposter Batman", category: "Mini", price: "8,000 MMK", image: "photo_2026-08-08_10-12-57.jpg", link: "product4.html" },
-    { name: "NINJAGO", category: "Set", price: "25,000 MMK", image: "photo_2026-08-08_10-13-05.jpg", link: "product5.html" },
-    { name: "Jocker", category: "Mini", price: "20,000 MMK", image: "photo_2026-08-08_10-13-00.jpg", link: "product6.html" },
-    { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product7.html"},
-    { name: "Display Box", category:"Figure", price: "20,000 MMK", image: "photo_2026-08-08_20-03-45.jpg", link: "product8.html"},
-    { name: "Super Hero", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_20-13-54.jpg", link: "product9.html"},
-    { name: "Truck Car", category:"Set", price: "20,000 MMK", image: "image_5fa7cf71.png", link: "product10.html"},
-    { name: "Robot", category:"Set", price: "20,000 MMK", image: "Screenshot 2026-08-08 193455.png", link: "product11.html"},
-    { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product12.html"},
-    { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product13.html"},
-    { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product14.html"},
-    { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product15.html"},
-    { name: "DreamZzz", category:"Set", price: "20,000 MMK", image: "photo_2026-08-08_19-43-31.jpg", link: "product16.html"},
+    { name: "MINI-SET", category: "Mini", price: "6,500 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-10_23-08-46.jpg", link: "product1.html" },
+    { name: "Luffy", category: "Mini", price: "7,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-11_20-36-28.jpg", link: "product2.html" },
+    { name: "Ghost Sea Shark", category: "Set", price: "80,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "image_da7d961e.png", link: "product3.html" },
+    { name: "Ninja Go", category: "Mini", price: "5,500 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-11_20-50-30.jpg", link: "product4.html" },
+    { name: "DreamZzz", category:"Set", price: "39,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-08_19-43-31.jpg", link: "product7.html"},
+    { name: "Display Box", category:"Figure", price: "3,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-08_20-03-45.jpg", link: "product8.html"},
+    { name: "Super Hero", category:"Set", price: "60,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-08_20-13-54.jpg", link: "product9.html"},
+    { name: "Truck Car", category:"Set", price: "57,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "image_5fa7cf71.png", link: "product10.html"},
+    { name: "Rocket", category:"Set", price: "40,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "Screenshot 2026-08-08 193455.png", link: "product11.html"},
+    { name: "DC Hero", category:"Mini", price: "4,500-5,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-09_12-30-14.jpg", link: "product12.html"},
+    { name: "Mini Set", category:"Mini", price: "6,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-09_12-40-14.jpg", link: "product13.html"},
+    { name: "NINJA GO", category:"Mini", price: "6,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-09_16-38-12.jpg", link: "product14.html"},
+    { name: "NINJA GO", category:"Set", price: "45,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "image_8036c2b9.png", link: "product15.html"},
+    { name: "Bela Set", category:"Set", price: "60,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "image_1e543a25.png", link: "product16.html"},
 ];
 
-const itemsPerPage = 6; // တစ်မျက်နှာလျှင် ပြမည့် Product အရေအတွက်
+const itemsPerPage = 6; 
 let currentPage = 1;
+let currentFilter = "All";
 
 const productGrid = document.querySelector('.product-grid');
 const categorySelect = document.getElementById('category');
+
+// Product တစ်ခုခုကို နှိပ်လိုက်ရင် လက်ရှိ Page, Filter နဲ့ Scroll နေရာကို သိမ်းရန်
+document.addEventListener("click", function (e) {
+    const productLink = e.target.closest(".product-link");
+    if (productLink) {
+        sessionStorage.setItem("savedPage", currentPage);
+        sessionStorage.setItem("savedFilter", currentFilter);
+        sessionStorage.setItem("savedScrollY", window.scrollY);
+    }
+});
 
 function displayProducts(filter = "All", page = 1) {
     if (!productGrid) return;
     productGrid.innerHTML = "";
 
-    // Category အလိုက် စစ်ထုတ်ခြင်း
+    currentFilter = filter;
+    currentPage = page;
+
     const filteredProducts = products.filter(p => filter === "All" || p.category === filter);
 
-    // Pagination တွက်ချက်ခြင်း
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const paginatedItems = filteredProducts.slice(startIndex, endIndex);
@@ -39,7 +48,6 @@ function displayProducts(filter = "All", page = 1) {
     if (paginatedItems.length === 0) {
         productGrid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; color: #7f8c8d;'>ဤ Category ထဲတွင် ပစ္စည်းမရှိသေးပါ။</p>";
     } else {
-        // Product များကို Screen ပေါ်တင်ခြင်း
         paginatedItems.forEach(p => {
             const cardHTML = `
                 <a href="${p.link}" class="product-link">
@@ -55,12 +63,10 @@ function displayProducts(filter = "All", page = 1) {
         });
     }
 
-    // Pagination ခလုတ်များ ဖန်တီးခြင်း
     setupPagination(filteredProducts.length, page, filter);
 }
 
-function setupPagination(totalItems, page, filter) {
-    let paginationContainer = document.getElementById('paginationContainer');
+function setupPagination(totalItems, page, filter) {let paginationContainer = document.getElementById('paginationContainer');
     
     if (!paginationContainer) {
         paginationContainer = document.createElement('div');
@@ -73,7 +79,7 @@ function setupPagination(totalItems, page, filter) {
     paginationContainer.innerHTML = "";
     const pageCount = Math.ceil(totalItems / itemsPerPage);
 
-    if (pageCount <= 1) return; // တစ်မျက်နှာစာပဲ ရှိရင် ခလုတ်မပြပါ
+    if (pageCount <= 1) return; 
 
     for (let i = 1; i <= pageCount; i++) {
         const btn = document.createElement('button');
@@ -89,38 +95,70 @@ function setupPagination(totalItems, page, filter) {
         btn.addEventListener('click', function() {
             currentPage = i;
             displayProducts(filter, currentPage);
-            window.scrollTo({ top: 0, behavior: 'smooth' }); // Page ပြောင်းရင် အပေါ်ဆုံးပြန်ရောက်ရန်
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
         });
 
         paginationContainer.appendChild(btn);
     }
 }
 
-// ပထမအကြိမ် စတင်ပြသခြင်း
-displayProducts();
-
-// Category ပြောင်းသည့်အခါ 
+// Category ပြောင်းတဲ့အခါ
 if (categorySelect) {
     categorySelect.addEventListener('change', function() {
-        currentPage = 1; // Category ပြောင်းရင် Page 1 ကို ပြန်သွားမည်
+        currentPage = 1; 
         displayProducts(this.value, currentPage);
     });
 }
+
+// Page Load ဖြစ်ချိန် (သို့) Back ခလုတ်နှိပ်ပြီး ပြန်လာချိန်
 window.addEventListener("load", function () {
     const preloader = document.getElementById("preloader");
     const mainContent = document.getElementById("main-content");
 
-    // လိုချင်ရင် ဒီမှာ အချိန်ဆွဲလို့ရပါတယ် (ဥပမာ - ၁.၅ စက္ကန့်)
-    setTimeout(() => {
-        preloader.style.opacity = "0";
-        preloader.style.transition = "opacity 3s ease";
+    // သိမ်းထားသော ချက်လက်မှတ်များကို စစ်ဆေးရန်
+    const savedPage = sessionStorage.getItem("savedPage");
+    const savedFilter = sessionStorage.getItem("savedFilter");
+    const savedScrollY = sessionStorage.getItem("savedScrollY");
 
+    if (savedFilter && categorySelect) {
+        categorySelect.value = savedFilter;
+        currentFilter = savedFilter;
+    }
+
+    if (savedPage) {
+        currentPage = parseInt(savedPage);
+        sessionStorage.removeItem("savedPage");
+    }
+
+    displayProducts(currentFilter, currentPage);
+
+    if (savedScrollY) {
         setTimeout(() => {
-            preloader.style.display = "none";
-            
-            // preloader ပျောက်သွားမှ တကယ့် website content တွေကို ပေါ်လာစေမယ်
-            mainContent.style.display = "block";
-        }, 500);
-        
-    }, 3000); // ၁.၅ စက္ကန့်ကြာရင် Preloader ပျောက်ပြီး Website ပေါ်လာမယ်
+            window.scrollTo({
+                top: parseInt(savedScrollY),
+                behavior: "smooth"
+            });
+        }, 100);
+        sessionStorage.removeItem("savedScrollY");
+    }
+
+    // Preloader ပုံစံ
+    if (!sessionStorage.getItem("hasLoaded")) {
+        setTimeout(() => {
+            preloader.style.opacity = "0";
+            preloader.style.transition = "opacity 3s ease";
+
+            setTimeout(() => {
+                preloader.style.display = "none";
+                if (mainContent) {
+                    mainContent.style.display = "block";
+                }
+            }, 500);
+        }, 3000);
+
+        sessionStorage.setItem("hasLoaded", "true");
+    } else {
+        if (preloader) preloader.style.display = "none";
+        if (mainContent) mainContent.style.display = "block";
+    }
 });

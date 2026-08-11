@@ -21,25 +21,28 @@
            
             <div class="image-section">
                 <div class="main-image-box">
-                    <img id="mainImage" src="photo_2026-08-08_20-03-45.jpg" alt="Product">
+                    <img id="mainImage" src="photo_2026-08-09_12-30-14.jpg" alt="Product">
                 </div>
                
                 <div class="thumbnail-container">
-                    <img src="photo_2026-08-08_20-03-45.jpg" class="thumb-circle active" onclick="changeImage(this)">
-                    <img src="photo_2026-08-08_20-03-47.jpg" class="thumb-circle" onclick="changeImage(this)">
-                    
+                    <img src="photo_2026-08-09_12-35-09.jpg" class="thumb-circle active" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-35-11.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-35-13.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-35-15.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-35-16.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-09_12-35-18.jpg" class="thumb-circle" onclick="changeImage(this)">
                 </div>
             </div>
 
            
             <div class="info-section">
-                <h2>Reverse Flash</h2>
+                <h2>DC Hero</h2>
                 <p class="detail-category">Category: Mini Lego</p>
-                <p class="detail-price">3,000 MMK</p>
+                <p class="detail-price">4,500-5,000 MMK</p>
                 
                 <h3>Product Description</h3>
                 <p class="description-text">
-                    Telegram channel တွင် ပစ္စည်းမှာယူရန် ADD TO CART ကိုနှိပ်ပါ
+                   Telegram channel တွင် ပစ္စည်းမှာယူရန် ADD TO CART ကိုနှိပ်ပါ
                 </p>
 
                 <a href="https://t.me/Izumi998" target="_blank" class="buy-btn" style="text-decoration: none; display: inline-block; text-align: center;">Add to Cart</a>
@@ -49,7 +52,7 @@
     </main>
 
     <footer>
-       <a href="https://sthu34385-droid.github.io/protofolio/">Creator Protofolio</a>
+        <a href="https://sthu34385-droid.github.io/protofolio/">Creator Protofolio</a>
     </footer>
 
     
@@ -58,7 +61,7 @@
             const mainImage = document.getElementById('mainImage');
             mainImage.src = element.src;
 
-            
+           
             document.querySelectorAll('.thumb-circle').forEach(img => img.classList.remove('active'));
             element.classList.add('active');
         }

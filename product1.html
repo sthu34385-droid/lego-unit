@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arduino Nano - Product Details</title>
+    <title>Product Details</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <!-- Header Section -->
     <header>
         <h1>My Shop</h1>
         <nav>
@@ -17,35 +16,60 @@
         </nav>
     </header>
 
-    <!-- Main Detail Section -->
     <main>
-        <div class="detail-container">
-            <!-- ပုံကြီးပြမည့်နေရာ -->
-            <div class="detail-image">
-                <img src="photo_2026-08-08_10-12-46.jpg" alt="Arduino Nano">
+        <div class="product-detail-card">
+           
+            <div class="image-section">
+                <div class="main-image-box">
+                    <img id="mainImage" src="photo_2026-08-10_23-08-46.jpg" alt="Product">
+                </div>
+               
+                <div class="thumbnail-container">
+                    <img src="photo_2026-08-10_23-08-46.jpg" class="thumb-circle active" onclick="changeImage(this)">
+                    <img src="photo_2026-08-10_23-08-48.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-10_23-08-50.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-10_23-08-52.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-10_23-08-54.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    
+                </div>
             </div>
 
-            <!-- အချက်အလက်နှင့် ဝယ်ယူရန် ခလုတ် -->
-            <div class="detail-info">
-                <h2>Arduino Nano</h2>
-                <p class="detail-category">Category: Electronics</p>
-                <p class="detail-price">15,000 MMK</p>
+            
+            <div class="info-section">
+                <h2>MINI-SET</h2>
+                <p class="detail-category">Category: Mini Lego</p>
+                <p class="detail-price">6,500 MMK</p>
                 
                 <h3>Product Description</h3>
                 <p class="description-text">
-                    Arduino Nano သည် DIY Electronics စီမံကိန်းများနှင့် Robot တည်ဆောက်ခြင်းများအတွက် အထူးသင့်လျော်ပြီး အရွယ်အစားသေးငယ်ကာ အသုံးပြုရလွယ်ကူသော Microcontroller ဘုတ်တစ်ခု ဖြစ်ပါသည်။
+                   Telegram channel တွင် ပစ္စည်းမှာယူရန် ADD TO CART ကိုနှိပ်ပါ
                 </p>
+                
 
-                <!-- ဝယ်ယူရန် ခလုတ် -->
-                <button class="buy-btn">Add to Cart</button>
+                <a href="https://t.me/Izumi998" target="_blank" class="buy-btn" style="text-decoration: none; display: inline-block; text-align: center;">Add to Cart</a>
+                <button onclick="goback()" class="back-btn">BACK</button>
             </div>
         </div>
     </main>
 
-    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2026 My Shop. All rights reserved.</p>
+        <a href="https://sthu34385-droid.github.io/protofolio/">Creator Protofolio</a>
     </footer>
 
+    
+    <script>
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = element.src;
+
+           
+            document.querySelectorAll('.thumb-circle').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+            
+        }
+        function goback(){
+                window.history.back();
+            }
+    </script>
 </body>
 </html>
