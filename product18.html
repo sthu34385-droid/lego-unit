@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Shop</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-detail-card">
+           
+            <div class="image-section">
+                <div class="main-image-box">
+                    <img id="mainImage" src="photo_2026-08-17_21-30-43.jpg" alt="Product">
+                </div>
+               
+                <div class="thumbnail-container">
+                    <img src="photo_2026-08-17_21-30-43.jpg" class="thumb-circle active" onclick="changeImage(this)">
+                    <img src="photo_2026-08-17_21-30-45.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    <img src="photo_2026-08-17_21-30-47.jpg" class="thumb-circle" onclick="changeImage(this)">
+                    
+                   
+                    
+                </div>
+            </div>
+
+           
+            <div class="info-section">
+                <h2>NARUTO</h2>
+                <p class="detail-category">Category: Mini Lego</p>
+                <p class="detail-price">6,500-8,000 MMK</p>
+                
+                <h3>Product Description</h3>
+                <p class="description-text">
+                    Telegram channel တွင် ပစ္စည်းမှာယူရန် ADD TO CART ကိုနှိပ်ပါ
+                </p>
+
+                <a href="https://t.me/Izumi998" target="_blank" class="buy-btn" style="text-decoration: none; display: inline-block; text-align: center;">Add to Cart</a>
+                <button onclick="goback()" class="back-btn">BACK</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+       <a href="https://sthu34385-droid.github.io/protofolio/">Creator Protofolio</a>
+    </footer>
+
+    
+    <script>
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = element.src;
+
+            
+            document.querySelectorAll('.thumb-circle').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+        }
+        function goback(){
+                window.history.back();
+            }
+    </script>
+</body>
+</html>

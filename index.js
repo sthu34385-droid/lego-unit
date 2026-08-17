@@ -13,6 +13,10 @@ const products = [
     { name: "NINJA GO", category:"Mini", price: "6,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-09_16-38-12.jpg", link: "product14.html"},
     { name: "NINJA GO", category:"Set", price: "45,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "image_8036c2b9.png", link: "product15.html"},
     { name: "Bela Set", category:"Set", price: "60,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "image_1e543a25.png", link: "product16.html"},
+    { name: "NARUTO", category:"Mini", price: "6,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-17_21-30-26.jpg", link: "product17.html"},
+     { name: "NARUTO BEYOND", category:"Mini", price: "6,500-8,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-17_21-30-43.jpg", link: "product18.html"},
+      { name: "Hyuga Hinata", category:"Mini", price: "13,000 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-17_21-30-51.jpg", link: "product19.html"},
+      { name: "Haulk", category:"Mini", price: "7,500 MMK (အသေးစိတ်ကြည့်ရန်နှိပ်ပါ)", image: "photo_2026-08-17_21-30-53.jpg", link: "product20.html"},
 ];
 
 const itemsPerPage = 6; 
