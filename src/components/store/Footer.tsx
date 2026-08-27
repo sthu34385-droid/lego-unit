@@ -1,0 +1,49 @@
+import Link from "next/link";
+import { Logo } from "./Logo";
+import { CATEGORIES } from "@/lib/categories";
+import { STORE_NAME } from "@/lib/constants";
+
+export function Footer() {
+  return (
+    <footer className="mt-auto border-t border-line bg-white">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <Logo />
+          <p className="mt-4 max-w-sm text-sm leading-6 text-muted">
+            {STORE_NAME} is a boutique building-set shop. No accounts, no fuss — browse a set, add it to
+            your cart, and check out.
+          </p>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Shop</p>
+          <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+            {CATEGORIES.map((cat) => (
+              <Link key={cat.id} href={`/shop?category=${cat.id}`} className="hover:underline">
+                {cat.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Visit</p>
+          <p className="mt-4 text-sm leading-6 text-muted">
+            Yangon, Myanmar
+            <br />
+            Delivery nationwide
+            <br />
+            Cash, bank transfer, or mobile pay
+          </p>
+          <Link href="/about" className="mt-4 inline-block text-sm font-semibold hover:underline">
+            About the shop
+          </Link>
+        </div>
+      </div>
+      <div className="border-t border-line">
+        <div className="container-page flex flex-col gap-2 py-5 text-xs text-muted sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} {STORE_NAME}. All rights reserved.</p>
+          <p>Prices in Myanmar Kyat (MMK).</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

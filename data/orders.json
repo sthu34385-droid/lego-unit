@@ -1,0 +1,44 @@
+[
+  {
+    "orderId": "LU-20260827-B33738",
+    "customerName": "Aung Min",
+    "phone": "0912345678",
+    "address": "No. 12, Inya Road, Kamayut, Yangon",
+    "note": "Call first",
+    "paymentMethod": "cod",
+    "items": [
+      {
+        "productId": "harbor-police-station",
+        "name": "Harbor Police Station",
+        "price": 89000,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 89000,
+    "deliveryFee": 5000,
+    "total": 94000,
+    "status": "Confirmed",
+    "createdAt": "2026-08-27T11:36:12.954Z"
+  },
+  {
+    "orderId": "LU-20260827-C25B30",
+    "customerName": "Aung Min",
+    "phone": "0912345678",
+    "address": "No. 12, Inya Road, Kamayut, Yangon",
+    "note": "Please call before delivery",
+    "paymentMethod": "cod",
+    "items": [
+      {
+        "productId": "harbor-police-station",
+        "name": "Harbor Police Station",
+        "price": 89000,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 89000,
+    "deliveryFee": 5000,
+    "total": 94000,
+    "status": "Pending",
+    "createdAt": "2026-08-27T11:35:32.465Z"
+  }
+]
