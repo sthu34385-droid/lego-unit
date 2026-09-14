@@ -3,6 +3,7 @@ import { getOrder } from "@/lib/orders";
 import { PAYMENT_METHODS } from "@/lib/types";
 import { formatDateTime, formatMMK } from "@/lib/format";
 import { OrderStatusSelect } from "@/components/admin/OrderStatusSelect";
+import { DeleteOrderButton } from "@/components/admin/DeleteOrderButton";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,9 @@ export default async function AdminOrderDetailPage({
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Order</p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{order.orderId}</h1>
       <p className="mt-1 text-muted">{formatDateTime(order.createdAt)}</p>
+      <div className="mt-4">
+        <DeleteOrderButton orderId={order.orderId} />
+      </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <section className="card p-5">

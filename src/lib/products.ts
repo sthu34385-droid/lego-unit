@@ -67,16 +67,7 @@ export async function deleteProduct(id: string): Promise<boolean> {
   return true;
 }
 
-export async function recordSales(lines: { id: string; quantity: number }[]): Promise<void> {
+export async function countProductsByCategory(categoryId: string): Promise<number> {
   const products = await getAll();
-  for (const line of lines) {
-    const index = products.findIndex((p) => p.id === line.id);
-    if (index === -1) continue;
-    products[index] = {
-      ...products[index],
-      stock: Math.max(0, products[index].stock - line.quantity),
-      soldCount: products[index].soldCount + line.quantity,
-    };
-  }
-  await writeJson(FILE, products);
+  return products.filter((p) => p.category === categoryId).length;
 }

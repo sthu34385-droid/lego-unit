@@ -4,20 +4,15 @@ export function Hero() {
   return (
     <section className="container-page grid items-center gap-10 py-10 md:grid-cols-[1.05fr_0.95fr] md:py-16">
       <div className="rise">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Premium building sets</p>
-        <h1 className="mt-4 max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
-          Build the world you keep on the shelf.
+        <h1 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
+          Lego-Unit
         </h1>
         <p className="mt-5 max-w-md text-base leading-7 text-muted md:text-lg">
-          Lego-Unit curates city streets, racers, landmarks, and first builds — priced in MMK, packed with
-          care, and ready to ship across Myanmar.
+          Building sets in MMK. Add to cart and order on Telegram.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8">
           <Link href="/shop" className="btn btn-primary">
             Shop Now
-          </Link>
-          <Link href="/shop?sort=newest" className="btn btn-ghost">
-            New arrivals
           </Link>
         </div>
       </div>
@@ -31,16 +26,13 @@ export function Hero() {
 function HeroArt() {
   return (
     <div className="relative overflow-hidden rounded-[2rem] border border-line bg-white shadow-card">
-      <svg viewBox="0 0 640 520" className="block h-auto w-full" role="img" aria-label="Colorful building set">
+      <svg viewBox="0 0 640 520" className="block h-auto w-full" role="img" aria-label="Building sets">
         <rect width="640" height="520" fill="#f4f0e8" />
         <circle cx="520" cy="80" r="90" fill="#ffd400" opacity="0.55" />
         <circle cx="80" cy="430" r="70" fill="#006cb7" opacity="0.2" />
         <g transform="translate(90 80)">
           <IsometricStack />
         </g>
-        <text x="48" y="478" fill="#111" fontSize="18" fontWeight="600" fontFamily="inherit">
-          Original builds. Quiet luxury. Serious play.
-        </text>
       </svg>
     </div>
   );

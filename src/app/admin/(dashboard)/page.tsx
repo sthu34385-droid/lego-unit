@@ -3,6 +3,7 @@ import { listOrders } from "@/lib/orders";
 import { listProducts } from "@/lib/products";
 import { LOW_STOCK_THRESHOLD } from "@/lib/constants";
 import { formatDateTime, formatMMK } from "@/lib/format";
+import { hasNumber } from "@/lib/display";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +11,7 @@ export default async function AdminDashboardPage() {
   const [orders, products] = await Promise.all([listOrders(), listProducts()]);
   const paid = orders.filter((o) => o.status !== "Cancelled");
   const totalSales = paid.reduce((sum, o) => sum + o.total, 0);
-  const lowStock = products.filter((p) => p.stock <= LOW_STOCK_THRESHOLD);
+  const lowStock = products.filter((p) => hasNumber(p.stock) && p.stock <= LOW_STOCK_THRESHOLD);
   const recent = orders.slice(0, 8);
 
   const salesByDay = Array.from({ length: 7 }, (_, i) => {

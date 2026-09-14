@@ -1,18 +1,3 @@
-export const CATEGORY_IDS = [
-  "city",
-  "technic",
-  "creator",
-  "friends",
-  "cars",
-  "architecture",
-  "space",
-  "animals",
-  "kids",
-  "other",
-] as const;
-
-export type CategoryId = (typeof CATEGORY_IDS)[number];
-
 export const ORDER_STATUSES = [
   "Pending",
   "Confirmed",
@@ -32,17 +17,24 @@ export const PAYMENT_METHODS = [
 
 export type PaymentMethodId = (typeof PAYMENT_METHODS)[number]["id"];
 
+export type Category = {
+  id: string;
+  name: string;
+  createdAt: string;
+};
+
 export type Product = {
   id: string;
   name: string;
-  description: string;
+  description: string | null;
   price: number;
   salePrice: number | null;
   images: string[];
-  category: CategoryId;
-  ageRange: string;
-  pieceCount: number;
-  stock: number;
+  category: string;
+  ageRange: string | null;
+  pieceCount: number | null;
+  stock: number | null;
+  sku?: string | null;
   isNew: boolean;
   isBestSeller: boolean;
   isSale: boolean;
@@ -76,13 +68,4 @@ export type Order = {
   total: number;
   status: OrderStatus;
   createdAt: string;
-};
-
-export type CheckoutPayload = {
-  customerName: string;
-  phone: string;
-  address: string;
-  note?: string;
-  paymentMethod: PaymentMethodId;
-  items: CartItem[];
 };

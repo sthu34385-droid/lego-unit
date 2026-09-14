@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import { getOrder, updateOrderStatus } from "@/lib/orders";
+import { getOrder, updateOrderStatus, deleteOrder } from "@/lib/orders";
 import { isAdminRequest } from "@/lib/auth";
 import { ORDER_STATUSES } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> }) {
+  if (!(await isAdminRequest())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const { id } = await ctx.params;
   const order = await getOrder(id);
   if (!order) {
@@ -37,4 +40,17 @@ export async function PATCH(request: Request, ctx: { params: Promise<{ id: strin
     return NextResponse.json({ error: "Order not found" }, { status: 404 });
   }
   return NextResponse.json(order);
+}
+
+export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string }> }) {
+  if (!(await isAdminRequest())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await ctx.params;
+  const ok = await deleteOrder(id);
+  if (!ok) {
+    return NextResponse.json({ error: "Order not found" }, { status: 404 });
+  }
+  return NextResponse.json({ ok: true });
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { listOrders } from "@/lib/orders";
 import { formatDateTime, formatMMK } from "@/lib/format";
 import { PAYMENT_METHODS } from "@/lib/types";
+import { DeleteOrderButton } from "@/components/admin/DeleteOrderButton";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,7 @@ export default async function AdminOrdersPage() {
       {orders.length === 0 ? (
         <div className="card mt-8 px-6 py-16 text-center">
           <p className="font-semibold">No orders yet.</p>
-          <p className="mt-2 text-sm text-muted">New checkout orders will appear here.</p>
+          <p className="mt-2 text-sm text-muted">New orders will appear here.</p>
         </div>
       ) : (
         <div className="mt-6 overflow-x-auto rounded-[1.25rem] border border-line bg-white">
@@ -28,6 +29,7 @@ export default async function AdminOrdersPage() {
                 <th className="px-4 py-3">Payment</th>
                 <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3">Date</th>
+                <th className="px-4 py-3" />
               </tr>
             </thead>
             <tbody>
@@ -48,6 +50,11 @@ export default async function AdminOrdersPage() {
                   </td>
                   <td className="px-4 py-3">{o.status}</td>
                   <td className="px-4 py-3 text-muted">{formatDateTime(o.createdAt)}</td>
+                  <td className="px-4 py-3">
+                    <div className="flex justify-end">
+                      <DeleteOrderButton orderId={o.orderId} />
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

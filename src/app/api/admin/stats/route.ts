@@ -3,6 +3,7 @@ import { isAdminRequest } from "@/lib/auth";
 import { listOrders } from "@/lib/orders";
 import { listProducts } from "@/lib/products";
 import { LOW_STOCK_THRESHOLD } from "@/lib/constants";
+import { hasNumber } from "@/lib/display";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,7 @@ export async function GET() {
   const [orders, products] = await Promise.all([listOrders(), listProducts()]);
   const paidOrders = orders.filter((o) => o.status !== "Cancelled");
   const totalSales = paidOrders.reduce((sum, o) => sum + o.total, 0);
-  const lowStock = products.filter((p) => p.stock <= LOW_STOCK_THRESHOLD);
+  const lowStock = products.filter((p) => hasNumber(p.stock) && p.stock <= LOW_STOCK_THRESHOLD);
 
   const days: { date: string; total: number; count: number }[] = [];
   for (let i = 6; i >= 0; i -= 1) {

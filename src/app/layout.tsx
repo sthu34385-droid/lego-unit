@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s · Lego-Unit",
   },
   description:
-    "Lego-Unit is a premium toy store for building sets in Myanmar. Browse, add to cart, and order in minutes — no account needed.",
+    "Lego-Unit shop for building sets in Myanmar. Browse, add to cart, and order on Telegram.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

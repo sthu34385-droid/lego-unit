@@ -1,0 +1,12 @@
+[
+  { "id": "city", "name": "City", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "technic", "name": "Technic", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "creator", "name": "Creator", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "friends", "name": "Friends", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cars", "name": "Cars", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "architecture", "name": "Architecture", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "space", "name": "Space", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "animals", "name": "Animals", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "kids", "name": "Kids", "createdAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "other", "name": "Other", "createdAt": "2026-01-01T00:00:00.000Z" }
+]

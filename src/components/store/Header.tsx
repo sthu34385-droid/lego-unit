@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
 import { Logo } from "./Logo";
-import { CATEGORIES } from "@/lib/categories";
 import { useCartStore } from "@/lib/cart-store";
 import { cn } from "@/lib/cn";
+import { categorySwatch } from "@/lib/display";
+import type { Category } from "@/lib/types";
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [catsOpen, setCatsOpen] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
   const items = useCartStore((s) => s.items);
   const hydrated = useCartStore((s) => s.hydrated);
   const setHydrated = useCartStore((s) => s.setHydrated);
@@ -21,6 +23,15 @@ export function Header() {
   useEffect(() => {
     if (useCartStore.persist.hasHydrated()) setHydrated();
   }, [setHydrated]);
+
+  useEffect(() => {
+    fetch("/api/categories")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setCategories(data);
+      })
+      .catch(() => setCategories([]));
+  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -35,7 +46,7 @@ export function Header() {
   }, [open]);
 
   const shopActive = pathname === "/shop" || pathname.startsWith("/product");
-  const cartActive = pathname === "/cart" || pathname === "/checkout";
+  const cartActive = pathname === "/cart";
 
   return (
     <header className="sticky top-0 z-40">
@@ -79,11 +90,11 @@ export function Header() {
                 Categories
                 <ChevronDown size={14} className={cn("transition", catsOpen && "rotate-180")} />
               </button>
-              {catsOpen ? (
-                <div className="absolute left-1/2 top-full z-30 w-[540px] -translate-x-1/2 pt-3">
+              {catsOpen && categories.length > 0 ? (
+                <div className="absolute left-1/2 top-full z-30 w-[min(540px,calc(100vw-2rem))] -translate-x-1/2 pt-3">
                   <div className="overflow-hidden rounded-3xl border border-line bg-white p-3 shadow-hover">
                     <div className="grid grid-cols-2 gap-1">
-                      {CATEGORIES.map((cat) => (
+                      {categories.map((cat) => (
                         <Link
                           key={cat.id}
                           href={`/shop?category=${cat.id}`}
@@ -91,10 +102,9 @@ export function Header() {
                           onClick={() => setCatsOpen(false)}
                         >
                           <span className="flex items-center gap-2">
-                            <span className="h-2.5 w-2.5 rounded-sm" style={{ background: cat.colors[0] }} />
+                            <span className="h-2.5 w-2.5 rounded-sm" style={{ background: categorySwatch(cat.id) }} />
                             <span className="font-semibold">{cat.name}</span>
                           </span>
-                          <span className="mt-1 block pl-[18px] text-xs text-muted">{cat.tagline}</span>
                         </Link>
                       ))}
                     </div>
@@ -169,20 +179,24 @@ export function Header() {
               Cart
             </Link>
           </nav>
-          <p className="mt-8 px-7 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Categories</p>
-          <div className="mt-3 grid grid-cols-2 gap-2 px-4">
-            {CATEGORIES.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/shop?category=${cat.id}`}
-                className="rounded-2xl border border-line bg-paper px-3 py-3 text-sm font-semibold"
-                onClick={() => setOpen(false)}
-              >
-                <span className="mb-2 block h-1.5 w-8 rounded-full" style={{ background: cat.colors[0] }} />
-                {cat.name}
-              </Link>
-            ))}
-          </div>
+          {categories.length > 0 ? (
+            <>
+              <p className="mt-8 px-7 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Categories</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 px-4">
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.id}
+                    href={`/shop?category=${cat.id}`}
+                    className="rounded-2xl border border-line bg-paper px-3 py-3 text-sm font-semibold"
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="mb-2 block h-1.5 w-8 rounded-full" style={{ background: categorySwatch(cat.id) }} />
+                    {cat.name}
+                  </Link>
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       ) : null}
     </header>

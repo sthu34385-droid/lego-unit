@@ -5,6 +5,7 @@ import { useCartStore } from "@/lib/cart-store";
 import { useToast } from "@/components/ui/Toast";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/cn";
+import { isOutOfStock } from "@/lib/display";
 
 export function AddToCartButton({
   product,
@@ -23,7 +24,7 @@ export function AddToCartButton({
   function handleClick(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    if (disabled || product.stock <= 0) return;
+    if (disabled || isOutOfStock(product.stock)) return;
     add(product.id, quantity);
     toast("Added to cart", { href: "/cart", hrefLabel: "Cart" });
   }
@@ -32,7 +33,7 @@ export function AddToCartButton({
     <button
       type="button"
       onClick={handleClick}
-      disabled={disabled || product.stock <= 0}
+      disabled={disabled || isOutOfStock(product.stock)}
       className={cn(
         compact ? "btn btn-primary h-10 shrink-0 px-3 text-sm" : "btn btn-primary w-full",
       )}

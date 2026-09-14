@@ -6,8 +6,10 @@ import { useCartStore } from "@/lib/cart-store";
 import type { Product } from "@/lib/types";
 import { ProductMedia } from "@/components/product/ProductMedia";
 import { QuantitySelector } from "@/components/product/QuantitySelector";
+import { TelegramOrderButton } from "@/components/cart/TelegramOrderButton";
 import { effectivePrice, formatMMK } from "@/lib/format";
 import { getDeliveryFee } from "@/lib/constants";
+import { maxQuantity } from "@/lib/display";
 
 export function CartClient() {
   const items = useCartStore((s) => s.items);
@@ -38,7 +40,6 @@ export function CartClient() {
     return (
       <div className="card mt-8 px-6 py-16 text-center">
         <p className="text-lg font-semibold">Your cart is empty.</p>
-        <p className="mt-2 text-muted">Browse the shop and add a set when you find one you like.</p>
         <Link href="/shop" className="btn btn-primary mt-6">
           Continue Shopping
         </Link>
@@ -75,7 +76,7 @@ export function CartClient() {
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                   <QuantitySelector
                     value={item.quantity}
-                    max={Math.max(product.stock, 1)}
+                    max={maxQuantity(product.stock)}
                     onChange={(value) => setQuantity(product.id, value)}
                   />
                   <p className="font-semibold">{formatMMK(price * item.quantity)}</p>
@@ -101,9 +102,15 @@ export function CartClient() {
             <span>{formatMMK(total)}</span>
           </div>
         </div>
-        <Link href="/checkout" className="btn btn-primary mt-6 w-full">
-          Checkout
-        </Link>
+        <TelegramOrderButton
+          className="mt-6"
+          deliveryFee={delivery}
+          lines={lines.map(({ item, product }) => ({
+            name: product.name,
+            quantity: item.quantity,
+            unitPrice: effectivePrice(product),
+          }))}
+        />
         <Link href="/shop" className="btn btn-ghost mt-3 w-full">
           Continue Shopping
         </Link>

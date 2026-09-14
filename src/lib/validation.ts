@@ -1,87 +1,85 @@
-import { CATEGORY_IDS, PAYMENT_METHODS, type CheckoutPayload, type PaymentMethodId } from "./types";
-
 export type FieldErrors = Record<string, string>;
-
-const PHONE_RE = /^(?:09|\+?959)\d{7,9}$/;
-
-export function normalizePhone(phone: string): string {
-  return phone.replace(/[\s-]/g, "");
-}
-
-export function validateCheckout(input: Partial<CheckoutPayload>): FieldErrors {
-  const errors: FieldErrors = {};
-  const name = input.customerName?.trim() ?? "";
-  const phone = normalizePhone(input.phone ?? "");
-  const address = input.address?.trim() ?? "";
-  const paymentMethod = input.paymentMethod;
-
-  if (name.length < 2) errors.customerName = "Please enter your full name.";
-  if (!PHONE_RE.test(phone)) {
-    errors.phone = "Enter a valid Myanmar phone number, such as 09xxxxxxx.";
-  }
-  if (address.length < 10) {
-    errors.address = "Please enter a complete delivery address.";
-  }
-  if (!PAYMENT_METHODS.some((m) => m.id === paymentMethod)) {
-    errors.paymentMethod = "Please choose a payment method.";
-  }
-  if (!input.items || input.items.length === 0) {
-    errors.items = "Your cart is empty.";
-  }
-
-  return errors;
-}
-
-export function isPaymentMethod(value: string): value is PaymentMethodId {
-  return PAYMENT_METHODS.some((m) => m.id === value);
-}
-
-export function isCategoryId(value: string): value is (typeof CATEGORY_IDS)[number] {
-  return CATEGORY_IDS.includes(value as (typeof CATEGORY_IDS)[number]);
-}
 
 export type ProductInput = {
   name: string;
-  description: string;
+  description: string | null;
   price: number;
   salePrice: number | null;
   images: string[];
   category: string;
-  ageRange: string;
-  pieceCount: number;
-  stock: number;
+  ageRange: string | null;
+  pieceCount: number | null;
+  stock: number | null;
+  sku: string | null;
   isNew: boolean;
   isBestSeller: boolean;
   isSale: boolean;
 };
 
-export function validateProduct(input: Partial<ProductInput>): FieldErrors {
+function isEmptyValue(value: unknown): boolean {
+  return value === undefined || value === null || value === "";
+}
+
+export function optionalText(value: unknown): string | null {
+  if (isEmptyValue(value)) return null;
+  const text = String(value).trim();
+  if (!text || text === "null" || text === "undefined") return null;
+  return text;
+}
+
+export function optionalNumber(value: unknown): number | null {
+  if (isEmptyValue(value)) return null;
+  const n = typeof value === "number" ? value : Number(String(value).trim());
+  if (!Number.isFinite(n)) return null;
+  return n;
+}
+
+export function validateProduct(
+  input: Partial<ProductInput>,
+  categoryIds: string[],
+): FieldErrors {
   const errors: FieldErrors = {};
-  if (!input.name?.trim() || input.name.trim().length < 2) {
-    errors.name = "Product name is required.";
+  if (!input.name?.trim()) {
+    errors.name = "Product name is required";
   }
-  if (!input.description?.trim() || input.description.trim().length < 10) {
-    errors.description = "Please write a short product description.";
+
+  if (input.price == null || Number.isNaN(Number(input.price))) {
+    errors.price = "Price is required";
+  } else if (Number(input.price) < 0) {
+    errors.price = "Price cannot be negative";
   }
-  if (input.price == null || Number.isNaN(input.price) || input.price < 0) {
-    errors.price = "Enter a valid price in MMK.";
+
+  if (!input.category?.trim()) {
+    errors.category = "Please select a category";
+  } else if (!categoryIds.includes(input.category)) {
+    errors.category = "Please select a category";
   }
-  if (!input.category || !isCategoryId(input.category)) {
-    errors.category = "Choose a category.";
+
+  if (!input.images || input.images.length === 0 || !input.images[0]) {
+    errors.images = "Main image is required";
   }
-  if (!input.ageRange?.trim()) errors.ageRange = "Enter a recommended age range.";
-  if (input.pieceCount == null || input.pieceCount < 1) {
-    errors.pieceCount = "Enter the number of pieces.";
-  }
-  if (input.stock == null || input.stock < 0) {
-    errors.stock = "Enter available stock.";
-  }
-  if (input.isSale) {
-    if (input.salePrice == null || input.salePrice <= 0) {
-      errors.salePrice = "Enter a sale price.";
-    } else if (input.price != null && input.salePrice >= input.price) {
-      errors.salePrice = "Sale price must be lower than the regular price.";
+
+  if (input.salePrice != null) {
+    if (Number.isNaN(Number(input.salePrice)) || Number(input.salePrice) < 0) {
+      errors.salePrice = "Enter a valid discount price.";
+    } else if (input.price != null && !Number.isNaN(Number(input.price)) && Number(input.salePrice) >= Number(input.price)) {
+      errors.salePrice = "Discount price must be lower than the regular price.";
     }
   }
+
+  if (input.stock != null && (Number.isNaN(Number(input.stock)) || Number(input.stock) < 0)) {
+    errors.stock = "Enter a valid stock quantity.";
+  }
+
+  if (input.pieceCount != null && (Number.isNaN(Number(input.pieceCount)) || Number(input.pieceCount) < 1)) {
+    errors.pieceCount = "Enter a valid piece count.";
+  }
+
   return errors;
+}
+
+export function validateCategoryName(name: string): string | null {
+  if (!name.trim()) return "Category name is required";
+  if (name.trim().length < 2) return "Category name is too short";
+  return null;
 }

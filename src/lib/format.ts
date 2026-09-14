@@ -6,8 +6,13 @@ export function formatMMK(amount: number): string {
   return `${rounded.toLocaleString("en-US")} ${CURRENCY}`;
 }
 
-export function effectivePrice(product: Pick<Product, "price" | "salePrice" | "isSale">): number {
-  if (product.isSale && product.salePrice && product.salePrice > 0 && product.salePrice < product.price) {
+export function effectivePrice(product: Pick<Product, "price" | "salePrice">): number {
+  if (
+    product.salePrice != null &&
+    Number.isFinite(product.salePrice) &&
+    product.salePrice > 0 &&
+    product.salePrice < product.price
+  ) {
     return product.salePrice;
   }
   return product.price;
