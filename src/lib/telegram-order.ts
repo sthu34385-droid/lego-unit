@@ -7,25 +7,14 @@ export type TelegramOrderLine = {
   unitPrice: number;
 };
 
-export function buildTelegramOrderMessage(
-  lines: TelegramOrderLine[],
-  deliveryFee = 0,
-): string {
+export function buildTelegramOrderMessage(lines: TelegramOrderLine[]): string {
   const itemBlocks = lines.map((line) => {
     const lineTotal = line.unitPrice * line.quantity;
     return `• ${line.name} × ${line.quantity}\nPrice: ${formatMMK(lineTotal)}`;
   });
 
-  const subtotal = lines.reduce((sum, line) => sum + line.unitPrice * line.quantity, 0);
-  const total = subtotal + deliveryFee;
-  const sections = ["LEGO ORDER", "", itemBlocks.join("\n\n")];
-
-  if (deliveryFee > 0) {
-    sections.push("", `Delivery: ${formatMMK(deliveryFee)}`);
-  }
-
-  sections.push("", `Total: ${formatMMK(total)}`, "", "Please confirm my order.");
-  return sections.join("\n");
+  const total = lines.reduce((sum, line) => sum + line.unitPrice * line.quantity, 0);
+  return ["LEGO ORDER", "", itemBlocks.join("\n\n"), "", `Total: ${formatMMK(total)}`, "", "Please confirm my order."].join("\n");
 }
 
 export function getTelegramWebUrl(message: string): string {

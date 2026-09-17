@@ -8,7 +8,6 @@ import { ProductMedia } from "@/components/product/ProductMedia";
 import { QuantitySelector } from "@/components/product/QuantitySelector";
 import { TelegramOrderButton } from "@/components/cart/TelegramOrderButton";
 import { effectivePrice, formatMMK } from "@/lib/format";
-import { getDeliveryFee } from "@/lib/constants";
 import { maxQuantity } from "@/lib/display";
 
 export function CartClient() {
@@ -47,9 +46,7 @@ export function CartClient() {
     );
   }
 
-  const subtotal = lines.reduce((sum, line) => sum + effectivePrice(line.product) * line.item.quantity, 0);
-  const delivery = getDeliveryFee(subtotal);
-  const total = subtotal + delivery;
+  const total = lines.reduce((sum, line) => sum + effectivePrice(line.product) * line.item.quantity, 0);
 
   return (
     <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_0.8fr]">
@@ -89,22 +86,13 @@ export function CartClient() {
       <aside className="card h-fit p-5">
         <h2 className="text-lg font-semibold">Summary</h2>
         <div className="mt-4 space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted">Subtotal</span>
-            <span>{formatMMK(subtotal)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted">Delivery</span>
-            <span>{delivery === 0 ? "Free" : formatMMK(delivery)}</span>
-          </div>
-          <div className="flex justify-between border-t border-line pt-3 text-base font-semibold">
+          <div className="flex justify-between text-base font-semibold">
             <span>Total</span>
             <span>{formatMMK(total)}</span>
           </div>
         </div>
         <TelegramOrderButton
           className="mt-6"
-          deliveryFee={delivery}
           lines={lines.map(({ item, product }) => ({
             name: product.name,
             quantity: item.quantity,

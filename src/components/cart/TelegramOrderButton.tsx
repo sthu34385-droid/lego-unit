@@ -21,15 +21,13 @@ function TelegramMark({ size = 17 }: { size?: number }) {
 
 export function TelegramOrderButton({
   lines,
-  deliveryFee = 0,
   className,
 }: {
   lines: TelegramOrderLine[];
-  deliveryFee?: number;
   className?: string;
 }) {
   const { toast } = useToast();
-  const message = lines.length > 0 ? buildTelegramOrderMessage(lines, deliveryFee) : "";
+  const message = lines.length > 0 ? buildTelegramOrderMessage(lines) : "";
   const href = message ? getTelegramWebUrl(message) : `https://t.me/${TELEGRAM_USERNAME}`;
 
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
